@@ -40,8 +40,7 @@ public class GameMenu extends javax.swing.JFrame {
         //init and deal regular cards
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         regCards.regularCardsInit();
-        regCards.shuffle(); //shuffle for random hands
-        System.out.println("\nPRINTING REG DECK:");
+        regCards.shuffle(); //shuffle for random hand
         regCards.print();
         regCards.dealCards(4,this.players);//deal regular cards
         
@@ -56,12 +55,12 @@ public class GameMenu extends javax.swing.JFrame {
         
         //combine left over initialized decks into drawPileDeck
         drawPileDeck.combineDecks(regCards, expCards, diffuseCards);
+        drawPileDeck.shuffle();
+        System.out.println("\nPRINTING REG DECK:");
         System.out.println("\n\nDrawPile Size: "+drawPileDeck.getSize());
         
         initComponents();
         refreshGUI();
-        CardButton button = new CardButton("STF", 1);
-                scroller.add(button);
     }
     
     ///////////////////////////////////////
@@ -69,7 +68,7 @@ public class GameMenu extends javax.swing.JFrame {
     public void refreshGUI(){
         setCurrentPlayerCard();
         setPlayerCards();
-        
+        //drawPileDeck.chanceOfKitten();
         
     }
     
@@ -111,6 +110,7 @@ public class GameMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        chanceOfKit = new javax.swing.JLabel();
         ticker = new javax.swing.JLabel();
         phase = new javax.swing.JLabel();
         startMenuButton = new javax.swing.JButton();
@@ -139,6 +139,14 @@ public class GameMenu extends javax.swing.JFrame {
         setMinimumSize(new java.awt.Dimension(1280, 755));
         setResizable(false);
         getContentPane().setLayout(null);
+
+        chanceOfKit.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
+        chanceOfKit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chanceOfKit.setText("CofKit");
+        chanceOfKit.setToolTipText("");
+        chanceOfKit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(chanceOfKit);
+        chanceOfKit.setBounds(1040, 630, 90, 30);
 
         ticker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/tickerSmall.png"))); // NOI18N
         getContentPane().add(ticker);
@@ -361,6 +369,11 @@ public class GameMenu extends javax.swing.JFrame {
         deckButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/deckMess.png"))); // NOI18N
         deckButton.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/deckMess.png"))); // NOI18N
         deckButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/deckMess.png"))); // NOI18N
+        deckButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deckButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(deckButton);
         deckButton.setBounds(440, 380, 290, 170);
 
@@ -421,6 +434,14 @@ public class GameMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_startMenuButtonActionPerformed
 
+    private void deckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deckButtonActionPerformed
+        // TODO add your handling code here:
+        System.out.println("clicked drawPile");
+        Player tempPlayer = players.get(0);
+        drawPileDeck.takeCard(tempPlayer);
+        refreshGUI();
+    }//GEN-LAST:event_deckButtonActionPerformed
+
 
     
     /**
@@ -460,6 +481,7 @@ public class GameMenu extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
+    private javax.swing.JLabel chanceOfKit;
     private javax.swing.JPanel currentPlayerCard;
     private javax.swing.JLabel currentPlayerCardCount;
     private javax.swing.JButton currentPlayerIcon;

@@ -26,6 +26,10 @@ public class Hand /*extends DeckAbstract*/ extends ArrayList{
         return playerHand;
     }
     
+    public void addCard(Card card){
+        playerHand.add(card);
+    }
+    
     public void setHand(ArrayList<Card> newHand){
         playerHand.addAll(newHand);
     }

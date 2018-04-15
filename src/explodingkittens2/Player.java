@@ -27,12 +27,13 @@ public class Player {
     //setter methods
     
     public void setHand(ArrayList<Card> newHand){
-        //playerHand.setHandList(newHand);
-        //Collections.copy(playerHand,newHand);
         playerHand.setHand(newHand);
         System.out.println("in player class, setPlayerHand");
     }
     
+    public void addCard(Card card){
+        playerHand.addCard(card);
+    }
     
     public void peekThroughCards(){
         Card cardToPeek;

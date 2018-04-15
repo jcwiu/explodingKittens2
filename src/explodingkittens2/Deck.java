@@ -12,7 +12,7 @@ import java.util.Collections;
  *
  * @author Jenn
  */
-public class Deck /*extends DeckAbstract*/{
+public class Deck {
     
     private ArrayList<Card> deck;
 
@@ -129,11 +129,34 @@ public class Deck /*extends DeckAbstract*/{
     }
     
     
+    public int chanceOfKitten(int kittenCounter){
+        int chanceOfKitten=kittenCounter/deck.size();
+        return chanceOfKitten;
+    }
+    
     public ArrayList getList(){
         return deck;
     }
     
     //////////////////////
+    
+    public void takeCard(Player player){
+        player.addCard(drawCard());
+    }
+    
+    public Card drawCard(){
+        int atIndex = deck.size()-1;
+        Card drawnCard = deck.get(atIndex);
+        deck.remove(atIndex);
+        return drawnCard;
+    }
+    
+    
+    
+    public void addCard(Card card){
+        deck.add(card);
+    }
+
     //@Override
     public int getSize(){
         return deck.size();
