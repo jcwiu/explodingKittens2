@@ -15,7 +15,8 @@ public class Card {
     private String typeString;
     private int type, count; //type and count uniquely id the card
     private String imageName; 
-    private CardButton cardButton; //button to "hold" card
+    //private CardButton cardButton; //button to "hold" card
+    private CardButton button;
     
     private String[] types={"diffuse","explode","nope","STF","attack","skip","favor","shuffle","cat","cat1","cat2","cat3","cat4"};
     
@@ -24,7 +25,8 @@ public class Card {
         this.count=count;
         typeString = types[type];
         imageName = "/images/cards/"+types[type]+".png";
-        cardButton = new CardButton(types[type],count);
+        //cardButton = new CardButton(types[type],count);
+        button = new CardButton(types[type],count);
     }
     
     //Class get methods
@@ -41,11 +43,12 @@ public class Card {
     }
     
     public CardButton getCardButton(){
-        return cardButton;
+        return button;//cardButton;
     }
     
     public void loadCardButtonTo(JPanel scrollerPanel){
-        cardButton.addButton(scrollerPanel);
+        scrollerPanel.add(button);
+        //cardButton.addButton(scrollerPanel);
     }
     
     

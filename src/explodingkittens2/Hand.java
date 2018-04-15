@@ -17,7 +17,6 @@ public class Hand /*extends DeckAbstract*/ extends ArrayList{
     
     private ArrayList<Card> playerHand;
     
-    private Card firstCard;
     public Hand(){
         playerHand = new ArrayList<>();
         
@@ -32,6 +31,7 @@ public class Hand /*extends DeckAbstract*/ extends ArrayList{
     }
     
     public CardButton getCardButton(int i){
+        //return playerHand.get(i).getCardButton();
         return playerHand.get(i).getCardButton();
     }
     

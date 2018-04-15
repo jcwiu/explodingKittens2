@@ -60,6 +60,8 @@ public class GameMenu extends javax.swing.JFrame {
         
         initComponents();
         refreshGUI();
+        CardButton button = new CardButton("STF", 1);
+                scroller.add(button);
     }
     
     ///////////////////////////////////////
@@ -115,8 +117,6 @@ public class GameMenu extends javax.swing.JFrame {
         currentPlayerCard = new javax.swing.JPanel();
         handScroller = new javax.swing.JScrollPane();
         scroller = new javax.swing.JPanel();
-        jToggleButton1 = new javax.swing.JToggleButton();
-        jToggleButton2 = new javax.swing.JToggleButton();
         currentPlayerCardCount = new javax.swing.JLabel();
         infoLabel = new javax.swing.JLabel();
         handBG = new javax.swing.JLabel();
@@ -189,21 +189,9 @@ public class GameMenu extends javax.swing.JFrame {
 
         scroller.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         scroller.setLayout(new javax.swing.BoxLayout(scroller, javax.swing.BoxLayout.LINE_AXIS));
-
-        jToggleButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/cards/STF.png"))); // NOI18N
-        scroller.add(jToggleButton1);
-
-        jToggleButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/cards/STF.png"))); // NOI18N
-        jToggleButton2.setBorder(null);
-        jToggleButton2.setBorderPainted(false);
-        jToggleButton2.setContentAreaFilled(false);
-        jToggleButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jToggleButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        scroller.add(jToggleButton2);
-
         handScroller.setViewportView(scroller);
 
-        currentPlayerCard.add(handScroller, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 500, 220));
+        currentPlayerCard.add(handScroller, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 20, 500, 240));
 
         currentPlayerCardCount.setBackground(new java.awt.Color(255, 204, 51));
         currentPlayerCardCount.setFont(new java.awt.Font("AR CHRISTY", 0, 18)); // NOI18N
@@ -227,7 +215,7 @@ public class GameMenu extends javax.swing.JFrame {
         handBG.setBackground(new java.awt.Color(0, 0, 0));
         handBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/cards/handBG.png"))); // NOI18N
         handBG.setOpaque(true);
-        currentPlayerCard.add(handBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 520, 240));
+        currentPlayerCard.add(handBG, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 10, 520, 260));
 
         currentPlayerLabel.setBackground(new java.awt.Color(204, 204, 204));
         currentPlayerLabel.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
@@ -463,9 +451,11 @@ public class GameMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new GameMenu(playerCount).setVisible(true);
+                
             }
         });
+        
+        
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -479,8 +469,6 @@ public class GameMenu extends javax.swing.JFrame {
     private javax.swing.JLabel handBG;
     private javax.swing.JScrollPane handScroller;
     private javax.swing.JLabel infoLabel;
-    private javax.swing.JToggleButton jToggleButton1;
-    private javax.swing.JToggleButton jToggleButton2;
     private javax.swing.JLabel phase;
     private javax.swing.JLabel player1CardCount;
     private javax.swing.JButton player1Icon;
