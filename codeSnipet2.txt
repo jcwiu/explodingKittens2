@@ -1,0 +1,41 @@
+while(cardType<=6){ //number of types, seven total
+            
+            //diffuse cards, number depends on playerCount
+            //for two person game only 4 diffuse cards ( 2 in deck after dealing)
+            //else number of diffuse cards is 6. (number in deck after dealing = 6-playerCount)
+            if(playerCount == 2){
+                for(count=0;count<=3;count++){
+                    Card card = new Card(cardType,count);
+                    deck.add(card);
+                }
+            }else{
+                for(count=0;count<=5;count++){
+                    Card card = new Card(cardType, count);
+                    deck.add(card);
+                }
+            }
+            
+            //exploding Kitten cards, number depends on playerCount (one less than players playing)
+            for(count=0;count<=(playerCount-2);count++){
+                Card card = new Card(cardType, count);
+                deck.add(card);
+            }
+            cardType++;
+            
+            //nope & see the future cards have 5 cards total each
+            for (int i=0;i<=1;i++){
+                for(count=0;count<=4;count++){
+                    Card card = new Card(cardType, count);
+                    deck.add(card);
+                }
+                cardType++;
+            }
+            
+            //attack, skip, favor, and shuffle cards have 4 cards total each
+             for(int i=0;i<=3;i++){   
+                for(count=0;count<=3;count++){
+                    Card card = new Card(cardType, count);
+                    deck.add(card);
+                }
+                cardType++;
+             }

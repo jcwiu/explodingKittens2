@@ -1,0 +1,46 @@
+Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener() {
+        public void eventDispatched(AWTEvent event) {
+            if(event instanceof MouseEvent){ MouseEvent e = (MouseEvent)event;
+                if(isMouseInPane()){
+                    if(e.getID() == MouseEvent.MOUSE_PRESSED){
+                        if(e.getButton() == MouseEvent.BUTTON2){ mouseWheelDown = true; currentX = MouseInfo.getPointerInfo().getLocation().x; currentY = MouseInfo.getPointerInfo().getLocation().y;
+                        }
+                    }
+                }
+                //Stop the scroll if mouse is released ANYWHERE
+                if(e.getID() == MouseEvent.MOUSE_RELEASED){
+                    if(e.getButton() == MouseEvent.BUTTON2){
+                        mouseWheelDown = false;
+                    }
+                }
+            }
+        }
+    }, AWTEvent.MOUSE_EVENT_MASK);
+
+    Toolkit.getDefaultToolkit().addAWTEventListener(new AWTEventListener() {
+        public void eventDispatched(AWTEvent event) {
+            if(event instanceof MouseEvent){
+                MouseEvent e = (MouseEvent)event;
+
+                //Update the scroll based on delta drag value
+                if(e.getID() == MouseEvent.MOUSE_DRAGGED){
+                    if(mouseWheelDown){
+                        int newX = MouseInfo.getPointerInfo().getLocation().x;
+                        int newY = MouseInfo.getPointerInfo().getLocation().y;
+                        int scrollStepX = (currentX - newX);
+                        int scrollStepY = (currentY - newY);
+                        currentX = newX;
+                        currentY = newY;
+
+                        //mapScroll is the reference to JScrollPane
+                        int originalValX = mapScroll.getHorizontalScrollBar().getValue();
+                        mapScroll.getHorizontalScrollBar().setValue(originalValX + scrollStepX);
+
+                        int originalValY = mapScroll.getVerticalScrollBar().getValue();
+                        mapScroll.getVerticalScrollBar().setValue(originalValY + scrollStepY);
+                    }
+                }
+
+            }
+        }
+    }, AWTEvent.MOUSE_MOTION_EVENT_MASK);

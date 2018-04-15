@@ -1,0 +1,48 @@
+/*
+             //nope cards 5 total
+            for (int i=0;i<=1;i++){
+                for(count=0;count<=4;count++){
+                    Card card = new Card(cardType, count);
+                    deck.add(card);
+                }
+                cardType++;
+            }
+             
+            //attack cards 4 total
+            for(count=0;count<=3;count++){
+                Card card = new Card(cardType, count);
+                deck.add(card);
+            }
+            
+            //skip cards 4 total
+            for(count=0;count<=3;count++){
+                Card card = new Card(cardType, count);
+                deck.add(card);
+            }
+            
+            //favor cards 4 total
+            for(count=0;count<=3;count++){
+                Card card = new Card(cardType, count);
+                deck.add(card);
+            }
+            
+            //shuffle cards 4 total
+            for(count=0;count<=3;count++){
+                Card card = new Card(cardType, count);
+                deck.add(card);
+            }
+            
+            //see the future cards 5 total
+            for(count=0;count<=4;count++){
+                Card card = new Card(cardType, count);
+                deck.add(card);
+            }
+
+            //cat cards 4 of each (5 different types of cat cards)
+            for(int i=0;i<=4;i++){  
+                for(count=0;count<=3;count++){
+                    Card card = new Card(cardType, count);
+                    deck.add(card);
+                }
+            }
+            */
