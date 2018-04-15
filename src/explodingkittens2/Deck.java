@@ -15,6 +15,7 @@ import java.util.Collections;
 public class Deck {
     
     private ArrayList<Card> deck;
+    private int explodingKittensCount=4;
 
     public Deck(){
         deck = new ArrayList<>();
@@ -59,10 +60,12 @@ public class Deck {
         int cardType=1;
 
         //exploding Kitten cards, number depends on playerCount (one less than players playing)
-            for(count=0;count<=(playerCount-2);count++){
+            for(count=0;count<=(playerCount-1);count++){
                 Card card = new Card(cardType, count);
                 deck.add(deck.size(),card);
                 System.out.println("Type: "+cardType+", Count: "+count+", DeckSize: "+deck.size());
+                explodingKittensCount++;
+                System.out.println("EXPLODKITTS"+explodingKittensCount);
             }    
     }
     
@@ -129,13 +132,12 @@ public class Deck {
     }
     
     
-    public int chanceOfKitten(int kittenCounter){
-        int chanceOfKitten=kittenCounter/deck.size();
-        return chanceOfKitten;
-    }
-    
     public ArrayList getList(){
         return deck;
+    }
+    
+    public int getKittCount(){
+     return explodingKittensCount;
     }
     
     //////////////////////

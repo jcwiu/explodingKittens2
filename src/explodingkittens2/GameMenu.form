@@ -29,7 +29,7 @@
     <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="chanceOfKit">
+    <Component class="javax.swing.JLabel" name="kittChanceLabel">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="AR CHRISTY" size="24" style="1"/>

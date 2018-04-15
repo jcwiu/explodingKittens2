@@ -6,6 +6,7 @@
 package explodingkittens2;
 
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import javax.swing.BoxLayout;
 import javax.swing.UIManager;
@@ -32,6 +33,8 @@ public class GameMenu extends javax.swing.JFrame {
     private Deck expCards = new Deck();
     private Deck diffuseCards  = new Deck();
     private ArrayList<Player> players = new ArrayList();
+    private double kittChance;
+    private double kittCount;
     
     public GameMenu(ArrayList players)throws ClassNotFoundException, InstantiationException, IllegalAccessException, UnsupportedLookAndFeelException {
         this.players.addAll(players);
@@ -41,7 +44,6 @@ public class GameMenu extends javax.swing.JFrame {
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         regCards.regularCardsInit();
         regCards.shuffle(); //shuffle for random hand
-        regCards.print();
         regCards.dealCards(4,this.players);//deal regular cards
         
         //init and deal diffuse cards
@@ -52,14 +54,19 @@ public class GameMenu extends javax.swing.JFrame {
         expCards.expCardsInit(playerCount);
        
         //Players should have full starting decks
-        
         //combine left over initialized decks into drawPileDeck
         drawPileDeck.combineDecks(regCards, expCards, diffuseCards);
         drawPileDeck.shuffle();
-        System.out.println("\nPRINTING REG DECK:");
+        
+        //System.out.println("\nPRINTING REG DECK:");
+        //regCards.print();
         System.out.println("\n\nDrawPile Size: "+drawPileDeck.getSize());
         
         initComponents();
+        kittCount= drawPileDeck.getKittCount();
+        System.out.println("kittCount in gameMenu: "+kittCount);
+        calcKittChance();
+        
         refreshGUI();
     }
     
@@ -68,8 +75,18 @@ public class GameMenu extends javax.swing.JFrame {
     public void refreshGUI(){
         setCurrentPlayerCard();
         setPlayerCards();
-        //drawPileDeck.chanceOfKitten();
         
+    }
+    
+    public void calcKittChance(){
+        kittCount = playerCount-1;
+        System.out.println(players.size());
+        System.out.println(kittCount);
+        
+        double drawPileSize = drawPileDeck.getSize();
+        System.out.println(kittCount/drawPileSize);
+        kittChance = kittCount/drawPileDeck.getSize();
+        kittChanceLabel.setText(String.valueOf(new BigDecimal(String.valueOf(kittChance*100)).setScale(2, BigDecimal.ROUND_HALF_UP))+"%");   
     }
     
     //Collections.rotate(list, 1)
@@ -110,7 +127,7 @@ public class GameMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chanceOfKit = new javax.swing.JLabel();
+        kittChanceLabel = new javax.swing.JLabel();
         ticker = new javax.swing.JLabel();
         phase = new javax.swing.JLabel();
         startMenuButton = new javax.swing.JButton();
@@ -140,13 +157,13 @@ public class GameMenu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        chanceOfKit.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
-        chanceOfKit.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        chanceOfKit.setText("CofKit");
-        chanceOfKit.setToolTipText("");
-        chanceOfKit.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        getContentPane().add(chanceOfKit);
-        chanceOfKit.setBounds(1040, 630, 90, 30);
+        kittChanceLabel.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
+        kittChanceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        kittChanceLabel.setText("CofKit");
+        kittChanceLabel.setToolTipText("");
+        kittChanceLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        getContentPane().add(kittChanceLabel);
+        kittChanceLabel.setBounds(1040, 630, 90, 30);
 
         ticker.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/tickerSmall.png"))); // NOI18N
         getContentPane().add(ticker);
@@ -439,6 +456,7 @@ public class GameMenu extends javax.swing.JFrame {
         System.out.println("clicked drawPile");
         Player tempPlayer = players.get(0);
         drawPileDeck.takeCard(tempPlayer);
+        calcKittChance();
         refreshGUI();
     }//GEN-LAST:event_deckButtonActionPerformed
 
@@ -481,7 +499,6 @@ public class GameMenu extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JLabel chanceOfKit;
     private javax.swing.JPanel currentPlayerCard;
     private javax.swing.JLabel currentPlayerCardCount;
     private javax.swing.JButton currentPlayerIcon;
@@ -491,6 +508,7 @@ public class GameMenu extends javax.swing.JFrame {
     private javax.swing.JLabel handBG;
     private javax.swing.JScrollPane handScroller;
     private javax.swing.JLabel infoLabel;
+    private javax.swing.JLabel kittChanceLabel;
     private javax.swing.JLabel phase;
     private javax.swing.JLabel player1CardCount;
     private javax.swing.JButton player1Icon;
