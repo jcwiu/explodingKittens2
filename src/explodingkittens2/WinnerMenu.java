@@ -5,37 +5,28 @@
  */
 package explodingkittens2;
 
-
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.UnsupportedLookAndFeelException;
 //
+
+import java.awt.Color;
+
 /**
  *
  * @author Jenn
  */
-public class StartMenu extends javax.swing.JFrame {
+public class WinnerMenu extends javax.swing.JFrame {
 
     /**
      * Creates new form startMenu
+     * @param winnerName
      */
+
     
-    String[] playerNames = {"bob", "joe", "Anna", "Sarah"};
-    String[] playerIcons = {"pugcorn","avacado","nopeCat","chainsaw" };
-    ArrayList<Player> players = new ArrayList();
-    int playerCount=playerNames.length;
-    
-    private void spawnPlayers(){
-        for(int i=0;i<playerCount;i++){
-           Player player = new Player(playerNames[i],playerIcons[i]);
-           players.add(player);
-       }
-    }
-    
-    public StartMenu() {
+    public WinnerMenu(String winnerName) {
+        
         initComponents();
-        spawnPlayers();
+        
+        winnerLabel.setText(winnerName);
+        winnerLabel.setForeground(Color.white);
     }
 
     /**
@@ -47,8 +38,8 @@ public class StartMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        winnerLabel = new javax.swing.JLabel();
         startButton = new javax.swing.JButton();
-        settingsButton = new javax.swing.JButton();
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,10 +49,16 @@ public class StartMenu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
+        winnerLabel.setFont(new java.awt.Font("AR DESTINE", 0, 72)); // NOI18N
+        winnerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        winnerLabel.setText("Sarah");
+        getContentPane().add(winnerLabel);
+        winnerLabel.setBounds(430, 220, 410, 70);
+
         startButton.setFont(new java.awt.Font("AR CHRISTY", 1, 28)); // NOI18N
         startButton.setForeground(new java.awt.Color(255, 255, 255));
         startButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/buttonBG.png"))); // NOI18N
-        startButton.setText("START");
+        startButton.setText("RESET");
         startButton.setBorderPainted(false);
         startButton.setContentAreaFilled(false);
         startButton.setFocusPainted(false);
@@ -76,29 +73,9 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
         getContentPane().add(startButton);
-        startButton.setBounds(980, 510, 150, 80);
+        startButton.setBounds(1130, 630, 150, 80);
 
-        settingsButton.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
-        settingsButton.setForeground(new java.awt.Color(255, 255, 255));
-        settingsButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/buttonBG.png"))); // NOI18N
-        settingsButton.setText("SETTINGS");
-        settingsButton.setBorderPainted(false);
-        settingsButton.setContentAreaFilled(false);
-        settingsButton.setFocusPainted(false);
-        settingsButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        settingsButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        settingsButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        settingsButton.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        settingsButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        settingsButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                settingsButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(settingsButton);
-        settingsButton.setBounds(980, 600, 150, 80);
-
-        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/startMenu.png"))); // NOI18N
+        BG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/winner3.png"))); // NOI18N
         getContentPane().add(BG);
         BG.setBounds(0, 0, 1280, 720);
 
@@ -110,23 +87,10 @@ public class StartMenu extends javax.swing.JFrame {
     private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
         // TODO add your handling code here:
         System.out.println("\nSTART BUTTON PRESSED\n");
-        GameMenu g;
-        try {
-            g = new GameMenu(players);
-            g.setVisible(true);
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(StartMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
+        StartMenu s = new StartMenu();
+        s.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_startButtonActionPerformed
-
-    private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
-        // TODO add your handling code here:
-        SettingsMenu g = new SettingsMenu();
-        g.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_settingsButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -145,28 +109,30 @@ public class StartMenu extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WinnerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WinnerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WinnerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StartMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(WinnerMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new StartMenu().setVisible(true);
+                //new WinnerMenu().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BG;
-    private javax.swing.JButton settingsButton;
     private javax.swing.JButton startButton;
+    private javax.swing.JLabel winnerLabel;
     // End of variables declaration//GEN-END:variables
 }

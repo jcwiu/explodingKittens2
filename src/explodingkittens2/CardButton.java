@@ -14,10 +14,13 @@ public class CardButton extends JToggleButton {
     //actuall button attributes
     private final String cardType;
     private final int count;
+    private boolean selected; 
     
     public CardButton(String cardType, int count) {
         //super(label);
         super("");
+        
+        selected=false;
         
         //attributes set
         this.cardType=cardType;
@@ -77,7 +80,9 @@ public class CardButton extends JToggleButton {
     
     //action performed by button
     private void cardHolderActionPerformed(java.awt.event.ActionEvent evt){
-        System.out.println("CARD"+cardType+"_"+count+" PRESSED IN HAND CLASS");
+        System.out.println(cardType+"_"+count+" PRESSED IN HAND CLASS");
+        selected=!selected;
+        System.out.println(selected);
     }
 
 }

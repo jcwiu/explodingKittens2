@@ -123,10 +123,10 @@ public class Deck {
                 newHand.add(cardDealt);
                 deck.remove(atIndex);
             }
-            System.out.println("\nplayer j: "+j);
-            System.out.println("\n\nNEW HAND:"+newHand+"\n\n");
+            //System.out.println("\nplayer j: "+j);
+            //System.out.println("\n\nNEW HAND:"+newHand+"\n\n");
             Player tempPlayer = players.get(j);
-            System.out.println(tempPlayer.getName());
+            //System.out.println(tempPlayer.getName());
             tempPlayer.setHand(newHand);
         }
     }
@@ -145,6 +145,7 @@ public class Deck {
     public void takeCard(Player player){
         player.addCard(drawCard());
     }
+    
     
     public Card drawCard(){
         int atIndex = deck.size()-1;

@@ -35,6 +35,20 @@
     <Property name="useNullLayout" type="boolean" value="true"/>
   </Layout>
   <SubComponents>
+    <Component class="javax.swing.JLabel" name="winnerLabel">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="AR DESTINE" size="72" style="0"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="Sarah"/>
+      </Properties>
+      <Constraints>
+        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+          <AbsoluteConstraints x="430" y="220" width="410" height="70"/>
+        </Constraint>
+      </Constraints>
+    </Component>
     <Component class="javax.swing.JButton" name="startButton">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -46,7 +60,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/explodingkittens2/images/buttonBG.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="START"/>
+        <Property name="text" type="java.lang.String" value="RESET"/>
         <Property name="borderPainted" type="boolean" value="false"/>
         <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="focusPainted" type="boolean" value="false"/>
@@ -69,52 +83,14 @@
       </Events>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="980" y="510" width="150" height="80"/>
-        </Constraint>
-      </Constraints>
-    </Component>
-    <Component class="javax.swing.JButton" name="settingsButton">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="AR CHRISTY" size="24" style="1"/>
-        </Property>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="ff" red="ff" type="rgb"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/explodingkittens2/images/buttonBG.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="SETTINGS"/>
-        <Property name="borderPainted" type="boolean" value="false"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
-        <Property name="focusPainted" type="boolean" value="false"/>
-        <Property name="horizontalTextPosition" type="int" value="0"/>
-        <Property name="pressedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/explodingkittens2/images/pressedBG.png"/>
-        </Property>
-        <Property name="rolloverIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/explodingkittens2/images/pressedBG.png"/>
-        </Property>
-        <Property name="rolloverSelectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/explodingkittens2/images/pressedBG.png"/>
-        </Property>
-        <Property name="selectedIcon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/explodingkittens2/images/pressedBG.png"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="settingsButtonActionPerformed"/>
-      </Events>
-      <Constraints>
-        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="980" y="600" width="150" height="80"/>
+          <AbsoluteConstraints x="1130" y="630" width="150" height="80"/>
         </Constraint>
       </Constraints>
     </Component>
     <Component class="javax.swing.JLabel" name="BG">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/explodingkittens2/images/startMenu.png"/>
+          <Image iconType="3" name="/explodingkittens2/images/winner3.png"/>
         </Property>
       </Properties>
       <Constraints>

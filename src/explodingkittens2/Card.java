@@ -48,7 +48,6 @@ public class Card {
     
     public void loadCardButtonTo(JPanel scrollerPanel){
         scrollerPanel.add(button);
-        //cardButton.addButton(scrollerPanel);
     }
     
     

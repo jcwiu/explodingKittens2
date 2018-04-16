@@ -5,11 +5,12 @@
  */
 package explodingkittens2;
 
-
+import java.util.*;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import javax.swing.BoxLayout;
+import javax.swing.JPanel;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
@@ -26,6 +27,8 @@ public class GameMenu extends javax.swing.JFrame {
     
     
     private int playerCount;
+    private int playerTurnCount;
+    private int whoIsPlayer=0;
     
     private Deck drawPileDeck = new Deck();
     private Deck discardPileDeck = new Deck();
@@ -34,6 +37,11 @@ public class GameMenu extends javax.swing.JFrame {
     private Deck expCards = new Deck();
     private Deck diffuseCards  = new Deck();
     private ArrayList<Player> players = new ArrayList();
+    private ArrayList<JPanel> playerCards=new ArrayList();
+    
+    
+    
+    
     private double kittChance;
     private double kittCount;
     
@@ -41,8 +49,9 @@ public class GameMenu extends javax.swing.JFrame {
         this.players.addAll(players);
         playerCount=players.size();
         
-        //init and deal regular cards
         UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        
+        //init and deal regular cards
         regCards.regularCardsInit();
         regCards.shuffle(); //shuffle for random hand
         regCards.dealCards(4,this.players);//deal regular cards
@@ -64,32 +73,125 @@ public class GameMenu extends javax.swing.JFrame {
         System.out.println("\n\nDrawPile Size: "+drawPileDeck.getSize());
         
         initComponents();
-        kittCount= drawPileDeck.getKittCount();
-        System.out.println("kittCount in gameMenu: "+kittCount);
+        playerCards.add(playerCard1);
+        playerCards.add(playerCard2);
+        playerCards.add(playerCard3);
+        
+        kittCount=playerCount-1;
         calcKittChance();
         
         refreshGUI();
     }
     
+    
+    void performCardAction(Card card){
+        int cardType=card.getType();
+        
+        //diffuse
+        if(cardType==0){
+            //do nothing?
+            //aka autoplay diffuse cards when explodingKitt encountered
+            
+        }//exploding kitt
+        else if(cardType==1){
+        //check to see player count:
+        //if playercount == 2, then other player is winner
+        //if playercount > 2, remove player
+        //re add explod kitt card
+        //next player turn
+            
+        }//nope
+        else if(cardType==2){
+        //not implemented?
+        
+        }//STF
+        else if(cardType==3){
+        //remove card from hand & handPanel
+        //add card to discard
+        //peek top 3 cards from drawpile onto STF panel
+        //set STF panel visible
+        //wait for "ok" button to be pressed
+        //disable visability of STF panel
+        //remove cards from STF panel
+        
+            
+        }//atttack
+        else if(cardType==4){
+        //set selected player 
+            
+        }//skip
+        else if(cardType==5){
+        
+        }//favor
+        else if(cardType==6){
+        
+        }//shuffle
+        else if(cardType==7){
+        //removecard from hand
+        //add card to discard
+        
+        //shuffle drawpiledeck
+            
+        }//cat
+        else if(cardType==8){
+        
+            
+        }//cat1
+        else if(cardType==9){
+        
+        }//cat2
+        else if(cardType==10){
+        
+        }//cat3
+        else if(cardType==11){
+        
+        }//cat4
+        else if(cardType==12){
+        
+        }//default
+        else{
+        
+        }
+        
+        
+    
+    }
+    
     ///////////////////////////////////////
     
     public void refreshGUI(){
+        playerCount=players.size();
         setCurrentPlayerCard();
         setPlayerCards();
     }
     
+    
     public void calcKittChance(){
-        kittCount = playerCount-1;
-        System.out.println(players.size());
-        System.out.println(kittCount);
+       // System.out.println(players.size());
+        //System.out.println(kittCount);
         
         double drawPileSize = drawPileDeck.getSize();
-        System.out.println(kittCount/drawPileSize);
-        kittChance = kittCount/drawPileDeck.getSize();
-        kittChanceLabel.setText(String.valueOf(new BigDecimal(String.valueOf(kittChance*100)).setScale(2, BigDecimal.ROUND_HALF_UP))+"%");   
+        
+        double kittChance2;
+        kittChance=0;
+        kittChance2=0;
+        
+        kittChance = choose(drawPileSize, kittCount);
+        kittChance2 = choose(drawPileSize, playerCount);
+        kittChance= kittChance/kittChance2;
+        kittChance=kittChance * (playerCount-1);
+        
+        kittChanceLabel.setText(String.valueOf(new BigDecimal(String.valueOf(kittChance*100)).setScale(0, BigDecimal.ROUND_HALF_UP))+"%");   
     }
     
-    //Collections.rotate(list, 1)
+    public static double choose(double total, double choose){
+        if(total < choose)
+            return 0;
+        if(choose == 0 || choose == total)
+            return 1;
+        return choose(total-1,choose-1)+choose(total-1,choose);
+    }
+    
     public void setCurrentPlayerCard(){
         currentPlayerLabel.setText(players.get(0).getName());
         currentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/playerIcons/"+players.get(0).getIcon() +".png")));
@@ -154,7 +256,9 @@ public class GameMenu extends javax.swing.JFrame {
         BG = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(1280, 755));
         setMinimumSize(new java.awt.Dimension(1280, 755));
+        setPreferredSize(new java.awt.Dimension(1280, 755));
         setResizable(false);
         getContentPane().setLayout(null);
 
@@ -472,13 +576,53 @@ public class GameMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_startMenuButtonActionPerformed
 
+
     private void deckButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deckButtonActionPerformed
-        // TODO add your handling code here:
-        System.out.println("clicked drawPile");
+        System.out.println("============================");
+        System.out.println("CLICKED drawPile");
+        for (int i=0;i<players.size();i++)
+            System.out.println("playerArraylist: "+players.get(i).getName());
+        
         Player tempPlayer = players.get(0);
-        drawPileDeck.takeCard(tempPlayer);
+        
+        System.out.println(drawPileDeck.peek(0).getType()+drawPileDeck.peek(0).toString());
+        
+        //take a look at drawn card
+        if (drawPileDeck.peek(0).getType()==1){
+            if(playerCount==2){
+                System.out.println(players.get(players.size()-1).getName());
+                WinnerMenu w = new WinnerMenu(players.get(players.size()-1).getName());
+                w.setVisible(true);
+                this.setVisible(false);
+            }else{
+            
+            //clean hand scroller of dead player's cards
+            scroller.removeAll();
+            scroller.revalidate();
+            scroller.repaint();
+            
+            //remove dead player from players arraylist
+             players.remove(players.get(0));
+            
+            //clean last player panel (where dead player would have rotated to)
+            JPanel playerCardToRemove=playerCards.get(players.size()-2);
+            playerCardToRemove.removeAll();
+            playerCardToRemove.revalidate();
+            playerCardToRemove.repaint();
+            
+           
+            for (int i=0;i<players.size();i++)
+            System.out.println("playerArraylist after explode: "+players.get(i).getName());
+            }
+        }else{
+            drawPileDeck.takeCard(tempPlayer);
+        }
         calcKittChance();
         refreshGUI();
+        
+         //for (int i=0;i<players.size();i++)
+         //   System.out.println("playerArraylist at end of method: "+players.get(i).getName());
+        System.out.println("");
     }//GEN-LAST:event_deckButtonActionPerformed
 
     private void endTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnButtonActionPerformed
@@ -487,6 +631,7 @@ public class GameMenu extends javax.swing.JFrame {
         scroller.revalidate();
         scroller.repaint();
         Collections.rotate(players, 1);
+        calcKittChance();
         refreshGUI();
     }//GEN-LAST:event_endTurnButtonActionPerformed
 

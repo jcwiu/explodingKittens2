@@ -35,7 +35,6 @@ public class Hand /*extends DeckAbstract*/ extends ArrayList{
     }
     
     public CardButton getCardButton(int i){
-        //return playerHand.get(i).getCardButton();
         return playerHand.get(i).getCardButton();
     }
     

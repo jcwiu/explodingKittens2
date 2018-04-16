@@ -6,7 +6,6 @@
 package explodingkittens2;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 /**
@@ -28,7 +27,6 @@ public class Player {
     
     public void setHand(ArrayList<Card> newHand){
         playerHand.setHand(newHand);
-        System.out.println("in player class, setPlayerHand");
     }
     
     public void addCard(Card card){
@@ -42,6 +40,7 @@ public class Player {
             System.out.println("Card"+i+": "+cardToPeek.toString());
         }
     }
+
     
     //getter methods
     public String getName(){
