@@ -8,6 +8,7 @@ package explodingkittens2;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.swing.BoxLayout;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -75,7 +76,6 @@ public class GameMenu extends javax.swing.JFrame {
     public void refreshGUI(){
         setCurrentPlayerCard();
         setPlayerCards();
-        
     }
     
     public void calcKittChance(){
@@ -93,7 +93,7 @@ public class GameMenu extends javax.swing.JFrame {
     public void setCurrentPlayerCard(){
         currentPlayerLabel.setText(players.get(0).getName());
         currentPlayerIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/playerIcons/"+players.get(0).getIcon() +".png")));
-        currentPlayerCardCount.setText("");
+        currentPlayerCardCount.setText("cards: "+players.get(0).getHand().size());
         players.get(0).loadCardButtons(scroller);
     }
     
@@ -101,19 +101,19 @@ public class GameMenu extends javax.swing.JFrame {
         if(players.size()>=2){
         player1Icon.setText(players.get(1).getName());
         player1Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/playerIcons/"+players.get(1).getIcon()+".png")));
-        player1CardCount.setText("");
+        player1CardCount.setText("cards: "+players.get(1).getHand().size());
         }
         
         if(players.size()>=3){
         player2Icon.setText(players.get(2).getName());
         player2Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/playerIcons/"+players.get(2).getIcon() +".png")));
-        player2CardCount.setText("");
+        player2CardCount.setText("cards: "+players.get(2).getHand().size());
         }
         
         if(players.size()==4){
         player3Icon.setText(players.get(3).getName());
         player3Icon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/playerIcons/"+players.get(3).getIcon() +".png")));
-        player3CardCount.setText("");
+        player3CardCount.setText("cards: "+players.get(3).getHand().size());
         }
     }
     
@@ -127,10 +127,11 @@ public class GameMenu extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        endTurnButton = new javax.swing.JButton();
+        startMenuButton = new javax.swing.JButton();
         kittChanceLabel = new javax.swing.JLabel();
         ticker = new javax.swing.JLabel();
         phase = new javax.swing.JLabel();
-        startMenuButton = new javax.swing.JButton();
         currentPlayerCard = new javax.swing.JPanel();
         handScroller = new javax.swing.JScrollPane();
         scroller = new javax.swing.JPanel();
@@ -157,6 +158,46 @@ public class GameMenu extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
+        endTurnButton.setFont(new java.awt.Font("AR CHRISTY", 1, 36)); // NOI18N
+        endTurnButton.setForeground(new java.awt.Color(255, 51, 51));
+        endTurnButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/buttonBG.png"))); // NOI18N
+        endTurnButton.setText("END");
+        endTurnButton.setBorderPainted(false);
+        endTurnButton.setContentAreaFilled(false);
+        endTurnButton.setFocusPainted(false);
+        endTurnButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        endTurnButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        endTurnButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        endTurnButton.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        endTurnButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        endTurnButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                endTurnButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(endTurnButton);
+        endTurnButton.setBounds(170, 640, 185, 80);
+
+        startMenuButton.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
+        startMenuButton.setForeground(new java.awt.Color(102, 102, 102));
+        startMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/buttonBG.png"))); // NOI18N
+        startMenuButton.setText("BACK");
+        startMenuButton.setBorderPainted(false);
+        startMenuButton.setContentAreaFilled(false);
+        startMenuButton.setFocusPainted(false);
+        startMenuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        startMenuButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        startMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        startMenuButton.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        startMenuButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
+        startMenuButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startMenuButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(startMenuButton);
+        startMenuButton.setBounds(0, 640, 160, 80);
+
         kittChanceLabel.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
         kittChanceLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         kittChanceLabel.setText("CofKit");
@@ -179,26 +220,6 @@ public class GameMenu extends javax.swing.JFrame {
         phase.setOpaque(true);
         getContentPane().add(phase);
         phase.setBounds(0, 670, 1280, 50);
-
-        startMenuButton.setFont(new java.awt.Font("AR CHRISTY", 1, 24)); // NOI18N
-        startMenuButton.setForeground(new java.awt.Color(255, 255, 255));
-        startMenuButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/buttonBG.png"))); // NOI18N
-        startMenuButton.setText("BACK");
-        startMenuButton.setBorderPainted(false);
-        startMenuButton.setContentAreaFilled(false);
-        startMenuButton.setFocusPainted(false);
-        startMenuButton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        startMenuButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        startMenuButton.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        startMenuButton.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        startMenuButton.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/explodingkittens2/images/pressedBG.png"))); // NOI18N
-        startMenuButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                startMenuButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(startMenuButton);
-        startMenuButton.setBounds(320, 620, 185, 80);
 
         currentPlayerCard.setOpaque(false);
         currentPlayerCard.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -460,6 +481,15 @@ public class GameMenu extends javax.swing.JFrame {
         refreshGUI();
     }//GEN-LAST:event_deckButtonActionPerformed
 
+    private void endTurnButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endTurnButtonActionPerformed
+        // TODO add your handling code here:
+        scroller.removeAll();
+        scroller.revalidate();
+        scroller.repaint();
+        Collections.rotate(players, 1);
+        refreshGUI();
+    }//GEN-LAST:event_endTurnButtonActionPerformed
+
 
     
     /**
@@ -505,6 +535,7 @@ public class GameMenu extends javax.swing.JFrame {
     private javax.swing.JLabel currentPlayerLabel;
     private javax.swing.JButton deckButton;
     private javax.swing.JButton discardDeckButton;
+    private javax.swing.JButton endTurnButton;
     private javax.swing.JLabel handBG;
     private javax.swing.JScrollPane handScroller;
     private javax.swing.JLabel infoLabel;
